@@ -1,0 +1,63 @@
+version: "3"
+services:
+  geth-bootnode:
+    environment:
+      - nodekeyhex=08f0e1dee5c1b4645f3331a566009e41a4514b6cd28656d63d0449ecf812812b #Needs to be fix, so that the miners know the resulting enode id
+      - address=0x8cc5a1a0802db41db826c2fcb72423744338dcb0 #derived from the private key which is passed in the args
+    build:
+      context: ./
+      dockerfile: bootnode/Dockerfile
+      args:
+        privatekey: df504d175ae63abf209bad9dda965310d99559620550e74521a6798a41215f46 # Please don't do something like this in production, okay?
+        password: wang
+    ports:
+      - 30303:30303/udp
+      - 5545:8545
+    networks:
+      chainnet:
+        ipv4_address: 172.25.0.101 # The miners need to know the IP address later on
+
+  geth-1:
+    depends_on:
+      - geth-bootnode
+    environment:
+      - address=0x5896c78e5A421f06a753BEE5425AeD697583ED23 
+    build:
+      context: ./
+      dockerfile: geth-node/Dockerfile
+      args:
+        privatekey: 546950fca7e4f8d118922a6af06fb956602ed5797e698c69dc3d44f2d0e660cc
+        password: wang
+    container_name: geth-1
+    ports:
+      - 6545:8545
+    networks:
+      chainnet:
+        ipv4_address: 172.25.0.102
+  
+
+  geth-2:
+    depends_on:
+      - geth-bootnode
+    environment:
+      - address=0xB26cdfEC309d01C2Cc526B14D4C2A0Ecab402702 
+    build:
+      context: ./
+      dockerfile: geth-node/Dockerfile
+      args:
+        privatekey: b86e0901a99951728aa896f99be6e2dffab53d08375a2030396da5d9aa333f32
+        password: wang
+    container_name: geth-2
+    ports:
+      - 7545:8545
+    networks:
+      chainnet:
+        ipv4_address: 172.25.0.103
+  
+
+networks:
+  chainnet:
+    driver: bridge
+    ipam:
+      config:
+      - subnet: 172.25.0.0/24
