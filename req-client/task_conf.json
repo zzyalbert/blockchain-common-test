@@ -1,0 +1,17 @@
+{
+    "rpc": [
+        "http://127.0.0.1:8645",
+        "http://127.0.0.1:8647",
+        "http://127.0.0.1:8649"
+    ],
+    "privateKey": "18d0e978eb248ab339bcae087c3a07b19d23f01e6fae7a99f3d5cbc977e1bd2b",
+    "taskRoutineNum": 20,
+    "inactiveAccNum": 15,
+    "taskReplayNum": 5,
+    "rawTransferSize": 33,
+    "erc20TransferSize": 33,
+    "swapBatchSize": 34,
+    "accountBatchNum":5,
+    "pairNum":1,
+    "sendBatch":5
+}

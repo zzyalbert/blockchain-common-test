@@ -1,0 +1,5 @@
+yarn erc20_deploy
+yarn wht_deploy
+yarn factory_deploy
+yarn router_deploy
+yarn init_account

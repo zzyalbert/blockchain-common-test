@@ -1,0 +1,29 @@
+{
+  "name": "stress_test",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "clean": "npx hardhat clean",
+    "compile": "npx hardhat compile",
+    "erc20_deploy": "npx hardhat compile && npx hardhat --network dev run scripts/erc20_deploy.js",
+    "wht_deploy": "npx hardhat compile && npx hardhat --network dev run scripts/wht_deploy.js",
+    "factory_deploy": "npx hardhat compile && npx hardhat --network dev run scripts/factory_deploy.js",
+    "router_deploy": "npx hardhat compile && npx hardhat --network dev run scripts/router_deploy.js",
+    "init_account": "node scripts/init_account.js",
+    "create_account": "node scripts/creat_account.js",
+    "stress_test": "node scripts/stress_test.js"
+  },
+  "dependencies": {
+    "@nomiclabs/hardhat-waffle": "^2.0.1",
+    "@openzeppelin/contracts": "^3.3.0",
+    "axios": "^0.21.1",
+    "ethers": "^5.3.0",
+    "hardhat": "^2.9.3"
+  },
+  "devDependencies": {
+    "@nomiclabs/hardhat-ethers": "^2.0.2",
+    "@nomiclabs/hardhat-web3": "^2.0.0",
+    "ethereum-waffle": "^3.3.0"
+  }
+}
